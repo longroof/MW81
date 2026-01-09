@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}レジ - Flask Shop{% endblock %}
+
+{% block content %}
+  <h1>レジ</h1>
+
+  <div class="card">
+    <h3 style="margin-top:0;">注文内容</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>商品</th>
+          <th>単価</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for it in items %}
+          <tr>
+            <td>{{ it.product.name }}</td>
+            <td>¥{{ "{:,}".format(it.product.price) }}</td>
+            <td>{{ it.quantity }}</td>
+            <td>¥{{ "{:,}".format(it.line_total) }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div style="display:flex; justify-content: space-between; align-items:center; margin-top: 12px;">
+      <strong>合計: ¥{{ "{:,}".format(total) }}</strong>
+      {{ url_for(
+        <button class="btn" type="submit">注文を確定する</button>
+      </form>
+    </div>
+    <p class="muted" style="margin-bottom:0;">※このサンプルでは決済は省略し、注文確定＝支払い済みとして登録します。</p>
+  </div>
+{% endblock %}

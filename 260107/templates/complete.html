@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <h2 style="margin:0 0 6px;">注文完了</h2>
+    <p class="muted" style="margin:0 0 12px;">以下の内容で注文を受け付けました。</p>
+
+    <div class="card">
+      <div><span class="muted">氏名：</span><strong>{{ order.name }}</strong></div>
+      <div><span class="muted">メール：</span><strong>{{ order.email }}</strong></div>
+      <div style="margin-top:6px;"><span class="muted">住所：</span><br>{{ order.address | e }}</div>
+    </div>
+
+    <div style="height:12px;"></div>
+
+    <div class="card">
+      <h3 style="margin:0 0 10px;">注文内容</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>商品</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for it in order.items %}
+            <tr>
+              <td>{{ it.name }}</td>
+              <td>{{ it.qty }}</td>
+              <td>¥{{ "{:,}".format(it.line_total) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div style="height:10px;"></div>
+      <div class="row"><span class="muted">商品小計</span><strong>¥{{ "{:,}".format(order.summary.subtotal) }}</strong></div>
+      <div class="row"><span class="muted">消費税</span><strong>¥{{ "{:,}".format(order.summary.tax) }}</strong></div>
+      <div class="row"><span class="muted">送料</span><strong>¥{{ "{:,}".format(order.summary.shipping) }}</strong></div>
+      <hr style="border:0;border-top:1px solid rgba(122,162,255,.15);margin:10px 0;">
+      <div class="row"><span>合計</span><strong style="font-size:18px;">¥{{ "{:,}".format(order.summary.total) }}</strong></div>
+    </div>
+
+    <div style="height:12px;"></div>
+    <a class="btn btn-primary" href="{{ url_for('index') }}">商品一覧に戻る</a>
+  </div>
+{% endblock %}

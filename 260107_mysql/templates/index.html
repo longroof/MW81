@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+{% block title %}商品一覧 - Flask Shop{% endblock %}
+
+{% block content %}
+  <h1>商品一覧</h1>
+
+  <div class="grid">
+    {% for p in products %}
+      <div class="card">
+        <h3 style="margin: 0 0 6px;">{{ p.name }}</h3>
+        <div class="muted">在庫: {{ p.stock }}</div>
+        <p class="price">¥{{ "{:,}".format(p.price) }}</p>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a class="btn secondary"
+            </a>
+
+          <form method="post"
+               ="hidden" name="product_id" value="{{ p.id }}">
+            <input type="hidden" name="quantity" value="1">
+
+            <button class="btn" type="submit" {% if p.stock <= 0 %}disabled{% endif %}>
+              カートに追加
+            </button>
+          </form>
+        </div>
+      </div>
+    {% else %}
+      <p class="muted">商品がありません。</p>
+    {% endfor %}
+  </div>
+{% endblock %}

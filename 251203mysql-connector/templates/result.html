@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL結果</title>
+    <style>
+        /* (CSSスタイルは変更なし) */
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 80%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .search-form { margin-bottom: 30px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        .search-form label, .search-form input, .search-form button { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>データベース検索結果</h1>
+
+    <div class="search-form">
+        <form method="GET" action="/">
+            <label for="name">名前:</label>
+            <input type="text" id="name" name="name" value="{{ params.get('name', '') }}">
+
+            <label for="email">メールアドレス:</label>
+            <input type="text" id="email" name="email" value="{{ params.get('email', '') }}">
+
+            <button type="submit">検索</button>
+            <a href="/" style="margin-left: 10px;">リセット</a>
+        </form>
+    </div>
+    {% if error %}
+        <p style="color: red;">エラーが発生しました: {{ error }}</p>
+    {% elif data %}
+        <p>検索結果: **{{ data | length }}** 件</p>
+        <table>
+            <thead>
+                <tr>
+                    {% for col in columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                    <tr>
+                        {% for item in row %}
+                            <td>{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>データが見つかりませんでした。</p>
+    {% endif %}
+
+    <p><a href="/">戻る</a></p>
+</body>
+</html>

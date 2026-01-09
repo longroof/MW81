@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>数字当てゲーム</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <h1>数字当てゲーム | MW81</h1>
+
+    <p>1から100までの数字をひとつランダムに選出しました。10回までのターンで当ててください。大きい場合、小さい場合には教えてあげます。</p>
+
+    <div class="form">
+        <label for="guessField">1～100の数字を入力してください: </label>
+        <input type="text" id="guessField" class="guessField">
+        <input type="submit" value="送信" class="guessSubmit">
+    </div>
+
+    <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
+
+</body>
+
+</html>

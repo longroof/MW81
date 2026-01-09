@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <div class="row">
+      <div>
+        <h2 style="margin:0 0 6px;">カート</h2>
+        <div class="muted">数量の変更・削除ができます。</div>
+      </div>
+      <div class="row">
+        <a class="btn" href="{{ url_for('index') }}">買い物を続ける</a>
+        <a class="btn btn-primary" href="{{ url_for('checkout') }}">レジへ進む</a>
+      </div>
+    </div>
+
+    <div style="height:12px;"></div>
+
+    {% if items %}
+      <form method="POST" action="{{ url_for('update_cart') }}">
+        <table>
+          <thead>
+            <tr>
+              <th>商品</th>
+              <th>単価</th>
+              <th style="width:140px;">数量</th>
+              <th>小計</th>
+              <th style="width:120px;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for it in items %}
+              <tr>
+                <td>{{ it.name }}</td>
+                <td>¥{{ "{:,}".format(it.price) }}</td>
+                <td>
+                  <input type="hidden" name="product_ids[]" value="{{ it.id }}">
+                  <input type="number" name="quantities[]" min="0" value="{{ it.qty }}">
+                </td>
+                <td>¥{{ "{:,}".format(it.line_total) }}</td>
+                <td>
+                  <form method="POST" action="{{ url_for('remove_item', product_id=it.id) }}">
+                    <button class="btn btn-danger" type="submit">削除</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <div style="height:12px;"></div>
+
+        <div class="row">
+          <button class="btn" type="submit">カート更新</button>
+          <div class="card" style="min-width:320px;">
+            <div class="row"><span class="muted">商品小計</span><strong>¥{{ "{:,}".format(summary.subtotal) }}</strong></div>
+            <div class="row"><span class="muted">消費税</span><strong>¥{{ "{:,}".format(summary.tax) }}</strong></div>
+            <div class="row"><span class="muted">送料</span><strong>¥{{ "{:,}".format(summary.shipping) }}</strong></div>
+            <hr style="border:0;border-top:1px solid rgba(122,162,255,.15);margin:10px 0;">
+            <div class="row"><span>合計</span><strong style="font-size:18px;">¥{{ "{:,}".format(summary.total) }}</strong></div>
+          </div>
+        </div>
+      </form>
+    {% else %}
+      <p class="muted">カートは空です。</p>
+      <a class="btn btn-primary" href="{{ url_for('index') }}">商品一覧へ</a>
+    {% endif %}
+  </div>
+{% endblock %}

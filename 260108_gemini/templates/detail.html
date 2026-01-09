@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - 詳細</title>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <img src="{{ product.image_url }}" alt="{{ product.name }}">
+    <p>{{ product.description }}</p>
+    <p><strong>価格: ¥{{ "{:,}".format(product.price) }}</strong></p>
+    <hr>
+    <a href="/">一覧に戻る</a>
+</body>
+</html>

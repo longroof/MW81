@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ショッピングサイト{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <div>
+                <h1>🛒 ショッピングサイト</h1>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}">ホーム</a>
+                <a href="{{ url_for('cart') }}">カート 
+                    {% if session.cart %}
+                        ({{ session.cart|length }})
+                    {% endif %}
+                </a>
+                {% if session.user_id %}
+                    <span class="user-info">{{ session.full_name }}さん</span>
+                    <a href="{{ url_for('profile') }}">マイページ</a>
+                    <a href="{{ url_for('logout') }}">ログアウト</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">ログイン</a>
+                    <a href="{{ url_for('register') }}">新規登録</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ショッピングサイト. All rights reserved.</p>
+    </footer>
+</body>
+</html>

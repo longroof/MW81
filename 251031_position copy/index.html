@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>位置調整</h1>
+
+    <p>
+        これは基本的なブロックレベル要素です。隣接するブロックレベル要素は、この下に新しい行で配置されます。
+    </p>
+
+    <p class="positioned">
+        既定では、親要素の幅の 100% を占め、子コンテンツと同じ高さになります。合計の幅と高さは、コンテンツ + パディング + 境界の幅/高さになります。
+    </p>
+
+    <p>
+        これらはマージンによって隔てられています。マージンの相殺により、2 つのマージンのサイズの両方ではなく、一方のサイズで隔てられています。
+    </p>
+
+    <p>
+        <span>これ</span>や<span>これ</span>はインライン要素で、同じ行に隣接するテキストノードとともに、同じ行に収まる場合はその行に配置されます。収まらないインライン要素は、<span>可能な場合は新しい行に折り返され（テキストを含むこの要素のように）</span>、折り返せない場合は、次の画像のようにそのまま新しい行に表示されます。
+        <img src="https://mdn.github.io/shared-assets/images/examples/long.jpg" alt="snippet of cloth" />
+    </p>
+</body>
+
+</html>

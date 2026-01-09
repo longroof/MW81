@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="grid">
+    <div class="card">
+      <h2 style="margin:0 0 6px;">お届け先情報</h2>
+      <div class="muted">入力後、「注文を確定」します（決済はダミー）。</div>
+
+      <form method="POST" action="{{ url_for('checkout') }}">
+        <label>氏名</label>
+        <input type="text" name="name" value="{{ form.name if form else '' }}" placeholder="例）山田 太郎">
+
+        <label>メール</label>
+        <input type="email" name="email" value="{{ form.email if form else '' }}" placeholder="example@example.com">
+
+        <label>住所</label>
+        <textarea name="address" rows="4" placeholder="例）愛知県名古屋市...">{{ form.address if form else '' }}</textarea>
+
+        <div style="height:10px;"></div>
+        <button class="btn btn-primary" type="submit">注文を確定</button>
+        <a class="btn" href="{{ url_for('cart_view') }}">カートへ戻る</a>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 6px;">注文内容</h2>
+      {% if items %}
+        <table>
+          <thead>
+            <tr>
+              <th>商品</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for it in items %}
+              <tr>
+                <td>{{ it.name }}</td>
+                <td>{{ it.qty }}</td>
+                <td>¥{{ "{:,}".format(it.line_total) }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <div style="height:12px;"></div>
+        <div class="row"><span class="muted">商品小計</span><strong>¥{{ "{:,}".format(summary.subtotal) }}</strong></div>
+        <div class="row"><span class="muted">消費税</span><strong>¥{{ "{:,}".format(summary.tax) }}</strong></div>
+        <div class="row"><span class="muted">送料</span><strong>¥{{ "{:,}".format(summary.shipping) }}</strong></div>
+        <hr style="border:0;border-top:1px solid rgba(122,162,255,.15);margin:10px 0;">
+        <div class="row"><span>合計</span><strong style="font-size:18px;">¥{{ "{:,}".format(summary.total) }}</strong></div>
+      {% else %}
+        <p class="muted">カートが空です。</p>
+        <a class="btn btn-primary" href="{{ url_for('index') }}">商品一覧へ</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

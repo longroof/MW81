@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>MW81入力検証</h1>
+    <form action="#">
+        <!-- お名前入力欄 -->
+        <p>お名前：
+            <input type="text" name="userName" id="userName" placeholder="名前を日本語25文字以内で入力してください。">
+        </p>
+        <!-- ユーザーID入力欄(英数字8-12文字) -->
+        <p>ユーザーID：
+            <input type="text" name="" id="userId" placeholder="ユーザーIDを英数字8から12文字で入力してください。">
+        </p>
+        <!-- メールアドレス入力欄(@を含む)※検索キーワード「javascript 正規表現 メールアドレス」 -->
+        <p>メールアドレス：
+            <input type="text" name="" id="userMail" placeholder="メールアドレスを入力してください。">
+        </p>
+        <!-- 郵便番号7桁 -->
+        <p>郵便番号：
+            <input type="text" name="" id="userZip" placeholder="郵便番号を入力してください。">
+        </p>
+        <!-- 電話番号 10桁||11桁 -->
+        <p>電話番号：
+            <input type="text" name="" id="userTel" placeholder="電話番号を入力してください。">
+        </p>
+
+        <p><button id="validateButton">検証</button></p>
+    </form>
+    <script src="./main.js"></script>
+</body>
+
+</html>

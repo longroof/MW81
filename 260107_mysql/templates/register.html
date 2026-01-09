@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}新規登録 - Flask Shop{% endblock %}
+
+{% block content %}
+  <div class="card" style="max-width:520px;">
+    <h1 style="margin-top:0;">新規登録</h1>
+
+    {{ url_for(
+      <div style="margin-bottom:12px;">
+        <label>お名前</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label>メールアドレス</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label>パスワード</label>
+        <input type="password" name="password" minlength="6" required>
+      </div>
+
+      <button class="btn" type="submit">登録する</button>
+      {{ url_for(ログインへ</a>
+    </form>
+  </div>
+{% endblock %}

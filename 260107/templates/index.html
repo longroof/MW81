@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="card">
+    <div class="row">
+      <div>
+        <h2 style="margin:0 0 6px;">商品一覧</h2>
+        <div class="muted">気になる商品を選んでカートへ追加できます。</div>
+      </div>
+      <a class="btn btn-primary" href="{{ url_for('cart_view') }}">カートを見る</a>
+    </div>
+  </div>
+
+  <div style="height:14px;"></div>
+
+  <div class="grid">
+    {% for p in products %}
+      <div class="card">
+        <h3 style="margin:0 0 6px;">{{ p.name }}</h3>
+        <div class="muted" style="margin:0 0 10px;">{{ p.description }}</div>
+        <div class="row">
+          <div><strong>¥{{ "{:,}".format(p.price) }}</strong></div>
+          <a class="btn" href="{{ url_for('product_detail', product_id=p.id) }}">詳細</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

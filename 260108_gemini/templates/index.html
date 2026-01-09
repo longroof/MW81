@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>シンプルショップ</title>
+    <style>
+        .product-card { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>商品一覧</h1>
+    <div class="product-list">
+        {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" width="100%">
+            <h3>{{ product.name }}</h3>
+            <p>価格: ¥{{ "{:,}".format(product.price) }}</p>
+            <a href="/product/{{ product.id }}">詳細を見る</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

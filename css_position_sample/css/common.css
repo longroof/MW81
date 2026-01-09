@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+body{
+  font-family: 'メイリオ','Meiryo','Hiragino Kaku Gothic Pro', sans-serif;
+  color: #000;
+  background-color: #fff;
+}
+
+div.box{
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+  font-family: "Impact" , sans-serif;
+  color: #fff;
+  background-color: #999;
+}
+
+/* static:動かない(デフォルト) */
+div#static{
+  position: static;
+  top: 0;
+  left: 150px;
+  background-color: #f00;
+}
+
+/* relative:相対位置(元の位置が基準) */
+div#relative{
+  position: relative;
+  top: 0;
+  left: 150px;
+  background-color: #096;
+}
+
+/* absolute:絶対位置(ウインドウが基準) */
+div#absolute{
+  position: absolute;
+  top: 0;
+  left: 150px;
+  background-color: #fc0;
+}
+
+/* fixed:絶対位置(ウインドウが基準で固定) */
+div#fixed{
+  position: fixed;
+  bottom: 150px;
+  right: 150px;
+  z-index: 99;
+  background-color: #39f;
+}
+
+/* sticky:指定した縦方向の位置で固定(ウインドウ基準) */
+nav#sticky{
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #000c;
+}
+nav#sticky ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+nav#sticky ul li{
+  margin: 0 50px 0 50px;
+  font-family: "Impact" , sans-serif;
+  color: #fff;
+}
+
+div#sticky2{
+  position: sticky;
+  top: 150px;
+  left: 150px;
+  z-index: 1;
+  background-color: #333;
+}
+
+/* bigの中でsmallを配置 */
+div#big{
+  position: relative;
+  width: 600px;
+  height: 2000px;
+  background-color: #555;
+}
+div#small{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #999;
+}
+
+/* center:ど真ん中に配置 */
+div#center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #808;
+}
+div#center2{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #808;
+}
+
+/* 重なりの設定 */
+div#box01{
+  position: absolute;
+  top: 150px;
+  right: 200px;
+  z-index: 3;
+  background-color: #ffaa00;
+}
+div#box02{
+  position: absolute;
+  top: 100px;
+  right: 250px;
+  z-index: 2;
+  background-color: #ff8000;
+}
+div#box03{
+  position: absolute;
+  top: 50px;
+  right: 300px;
+  z-index: 1;
+  background-color: #ff5500;
+}
+
+
+
+
+
+
+

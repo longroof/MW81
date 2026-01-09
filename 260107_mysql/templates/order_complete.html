@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}注文完了 - Flask Shop{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <h1 style="margin-top:0;">注文完了</h1>
+    <p>注文番号: <strong>#{{ order.id }}</strong></p>
+    <p>合計: <strong>¥{{ "{:,}".format(order.total_amount) }}</strong></p>
+    <p class="muted">ステータス: {{ order.status }} / 注文日: {{ order.created_at }}</p>
+
+    <h3>明細</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>商品</th>
+          <th>単価</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for it in items %}
+          <tr>
+            <td>{{ it.product_name }}</td>
+            <td>¥{{ "{:,}".format(it.unit_price) }}</td>
+            <td>{{ it.quantity }}</td>
+            <td>¥{{ "{:,}".format(it.line_total) }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p style="margin-top:14px;">
+      {{ url_for(トップへ</a>
+      {{ url_for(注文履歴</a>
+    </p>
+  </div>
+{% endblock %}
